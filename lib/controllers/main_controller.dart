@@ -31,12 +31,12 @@ abstract class MainControllerBase with Store {
   }
 
   @action
-  void onSubmittedInput(String value) {
+  Future<void> onSubmittedInput(String value) async {
     if(editingIndex != null){
       editingIndex = null;
       inputController.clear();
     }else{
-      addItem(value);
+      await addItem(value);
       inputController.clear();
     }
   }

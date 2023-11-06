@@ -58,14 +58,7 @@ class _HomeViewState extends State<HomeView> {
                     isLoading: _isLoading,
                       onPressed: (){
                     if (_formKey.currentState!.validate()) {
-                      _userController.text = _userController.text.trim();
-                      _passwordController.text = _passwordController.text.trim();
-                      setState(() => _isLoading = true);
-                      Future.delayed(Duration(seconds: 2)).then((value){
-                        setState(() => _isLoading = false);
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => CaptureScreen()));
-                      });
+                      _login(context, user: _userController.text.trim(), password:_passwordController.text.trim());
                     }
                   }),
                   const Spacer(),
@@ -77,6 +70,14 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+  }
+
+  Future _login(BuildContext context, {required String user,required String password}) async {
+    setState(() => _isLoading = true);
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() => _isLoading = false);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => CaptureScreen()));
   }
 
 }

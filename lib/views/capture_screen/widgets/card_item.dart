@@ -14,7 +14,7 @@ class CardItem extends StatefulWidget {
 
 class _CardItemState extends State<CardItem> {
 
-  late MainController mainController = GetIt.I.get<MainController>();
+  MainController mainController = GetIt.I.get<MainController>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,14 @@ class _CardItemState extends State<CardItem> {
       onTap: (){
         showDialog(context: context, builder: (context){
           return AlertDialog(
-            content: Text("Confirmar exclusão do item?"),
+            content: const Text("Confirmar exclusão do item?"),
             actions: [
               TextButton(onPressed: (){
                 Navigator.pop(context);
-              }, child: Text("Não")),
+              }, child: const Text("Não")),
               TextButton(onPressed: () {
                 mainController.removeItem(index).then((value) => Navigator.pop(context));
-              }, child: Text("Sim")),
+              }, child: const Text("Sim")),
             ],
           );
         });
@@ -67,11 +67,11 @@ class _CardItemState extends State<CardItem> {
       child: Container(
         width: 30,
         height: 30,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.red,
             shape: BoxShape.circle
         ),
-        child: Icon(Icons.close, color: Colors.white,size: 20,),
+        child: const Icon(Icons.close, color: Colors.white,size: 20,),
       ),
     );
   }

@@ -41,6 +41,15 @@ mixin _$MainController on MainControllerBase, Store {
     });
   }
 
+  late final _$onSubmittedInputAsyncAction =
+      AsyncAction('MainControllerBase.onSubmittedInput', context: context);
+
+  @override
+  Future<void> onSubmittedInput(String value) {
+    return _$onSubmittedInputAsyncAction
+        .run(() => super.onSubmittedInput(value));
+  }
+
   late final _$getListAsyncAction =
       AsyncAction('MainControllerBase.getList', context: context);
 
@@ -93,17 +102,6 @@ mixin _$MainController on MainControllerBase, Store {
         name: 'MainControllerBase.onChangeInput');
     try {
       return super.onChangeInput(value);
-    } finally {
-      _$MainControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void onSubmittedInput(String value) {
-    final _$actionInfo = _$MainControllerBaseActionController.startAction(
-        name: 'MainControllerBase.onSubmittedInput');
-    try {
-      return super.onSubmittedInput(value);
     } finally {
       _$MainControllerBaseActionController.endAction(_$actionInfo);
     }

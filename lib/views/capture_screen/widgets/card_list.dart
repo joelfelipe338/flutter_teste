@@ -34,11 +34,11 @@ class _CardListState extends State<CardList> {
         ),
         child: Observer(
           builder: (_){
-            return  ListView.builder(
+            return mainController.listItens.isNotEmpty ? ListView.builder(
                 itemCount: mainController.listItens.length,
                 itemBuilder: (context, index){
                   return CardItem(item: mainController.listItens[index], index: index,);
-                });
+                }) : const Center(child: Text("Adicione algum item", style: TextStyle(color: Colors.black),));
           },
         )
     );

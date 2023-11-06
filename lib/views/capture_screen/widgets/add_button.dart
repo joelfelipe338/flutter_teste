@@ -25,10 +25,14 @@ class AddButton extends StatelessWidget {
           onChanged: mainController.onChangeInput,
           validator: (value){
             if(value != null && value.isEmpty) return "";
+            return null;
           },
           onFieldSubmitted: (value){
-            print(mainController.editingIndex);
-            if(formKey.currentState!.validate()) mainController.onSubmittedInput(value);
+            if(formKey.currentState!.validate()) {
+              mainController.onSubmittedInput(value).then((value) => FocusScope.of(context).requestFocus(focusNode));
+            }else{
+              FocusScope.of(context).requestFocus(focusNode);
+            }
           },
           decoration: InputDecoration(
 
